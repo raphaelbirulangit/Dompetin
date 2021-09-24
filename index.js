@@ -215,9 +215,7 @@ function listCategories() {
     homeContent.innerHTML = `
     <div class="card shadow-sm m-2 my-3" onclick="editCategoriForm(${dataUser.categories[i].id})">
       <div class="card-body d-flex justify-content-between p-4">
-        <div> 
-          <h6 class="card-subtitle">${dataUser.categories[i].name}</h6>
-          </div>
+        <h6 class="card-subtitle my-auto">${dataUser.categories[i].name}</h6>
         <p class="card-text">Rp. ${Intl.NumberFormat('id-ID').format(dataUser.categories[i].budget)}</p>
       </div>
        `
@@ -246,7 +244,9 @@ function editCategoriForm(id) {
     <button type="button" class="btn btn-outline-dark float-end" onclick="listCategories()">Close</button>
     <form class="m-auto mt-5">
       <div class="mb-3">
-        <label for="amount" class="form-label">Amount :</label>
+        <label for="name" class="form-label">Nama Kategori :</label>
+        <input type="text" class="form-control" id="name" placeholder="Makan" value="${category.name}">
+        <label for="amount" class="form-label">Budget :</label>
         <input type="number" class="form-control" id="amount" placeholder="100000" value="${category.budget}">
       </div>
       <button type="submit" class="btn btn-primary" onclick="saveEditCategori(${category.id})">Submit</button>
@@ -263,6 +263,7 @@ function saveEditCategori(id) {
 
   for (let i = 0; i < categories.length; i++) {
     if (categories[i].id === id) {
+      categories[i].name = document.getElementById("name").value,
       categories[i].budget = Number(document.getElementById("amount").value) 
     }
   }
@@ -297,6 +298,11 @@ function displayMainMenuCOnten() {
 
 function displayHomeContent(dataUser){
 
+    let totalExpenses = 0
+
+    for (let i = 0; i < dataUser.expenses.length; i++) {
+      totalExpenses += dataUser.expenses[i].amount
+    }
     /**
      * PROFIL CARD
      */
@@ -305,8 +311,8 @@ function displayHomeContent(dataUser){
      homeContent.innerHTML = `
       <div class="card card m-2 mb-5 my-4 shadow-lg" style="border-radius:14px;">
         <div class="card-body">
-          <h1>nama ${dataUser.name}</h1>
-          <h1>nama ${dataUser.salary}</h1>
+          <h1 id="namaCard">Hallo, ${dataUser.name}</h1>
+          <h1 class="gajiProfile">Saldo Rp. ${Intl.NumberFormat('id-ID').format(dataUser.salary - totalExpenses)}</h1>
         </div>
       </div>
        `
