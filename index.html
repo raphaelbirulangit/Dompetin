@@ -10,19 +10,19 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="d-flex justify-content-center">
-  <div id="main-content" style="max-width: 540px; height: 100vh;" class="container bg-white overflow-auto">
-    <h1>Dompetin</h1>
-
-    <div id="login">
-      <form action="">
-        <label for="name">First name:</label><br>
-        <input type="text" id="name" name="name" required><br>
-        <label for="salary">Salary:</label><br>
-        <input type="number" id="salary" name="salary" required><br><br>
-        <button onclick="initialize()">Submit</button>
-      </form> 
+  <div id="content" class="container p-0 d-flex flex-column shadow-lg" style="max-width: 540px; height: 100vh;">
+    <div id="main-content" class="container flex-grow-1 overflow-auto">
+      <h1>Dompetin</h1>
+      <div id="login">
+        <form action="">
+          <label for="name">First name:</label><br>
+          <input type="text" id="name" name="name" required><br>
+          <label for="salary">Salary:</label><br>
+          <input type="number" id="salary" name="salary" required><br><br>
+          <button onclick="initialize()">Submit</button>
+        </form> 
+      </div>
     </div>
-
   </div>
 <script src="index.js"></script>
 </body>
