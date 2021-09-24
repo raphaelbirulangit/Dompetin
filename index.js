@@ -105,14 +105,31 @@ function editExpense(id){
       <div class="mb-3">
         <label for="amount" class="form-label">Amount :</label>
         <input type="number" class="form-control" id="amount" placeholder="100000" value="${expense.amount}">
+        <label for="note" class="form-label">Note :</label>
+        <input type="text" class="form-control" id="note" placeholder="Mie Ayam" value="${expense.note}">
       </div>
-      <button type="submit" class="btn btn-primary" onclick="saveEditCategori(${expense.id})">Submit</button>
-      <button type="submit" class="btn btn-danger" onclick="deleteExpense(${expense.id})">Delete</button>
+        <button type="submit" class="btn btn-primary" onclick="saveEditExpense(${expense.id})">Save</button>
+        <button type="submit" class="btn btn-danger" onclick="deleteExpense(${expense.id})">Delete</button>
     </form>
     `
   homeContent.innerHTML = expenseForm
 
   document.querySelector('#content').appendChild(homeContent)
+}
+
+function saveEditExpense(id) {
+  const dataUser = loadData()
+  let expenses = dataUser.expenses
+
+  for (let i = 0; i < expenses.length; i++) {
+    if (expenses[i].id === id) {
+      expenses[i].note = document.getElementById("note").value,
+      expenses[i].amount = Number(document.getElementById("amount").value) 
+    }
+  }
+
+  return saveData(dataUser)
+  
 }
 
 function deleteExpense(id){
@@ -173,8 +190,16 @@ function loadCreateExpenseForm(){
 
 function listExpensesByCategory(categoryId) {
   const dataUser = loadData()
+  let category = ''
 
-  document.querySelector('#main-content').innerHTML = ''
+  for (let i = 0; i < dataUser.categories.length; i++) {
+    if (dataUser.categories[i].id === categoryId) {
+      category = dataUser.categories[i].name
+    }
+    
+  }
+
+  document.querySelector('#main-content').innerHTML = `<h4 class="p-4 text-center">${category}</h4>`
 
   for (let i = 0; i < dataUser.expenses.length; i++) {
     if (dataUser.expenses[i].categoryId === categoryId) {
@@ -312,7 +337,8 @@ function displayHomeContent(dataUser){
       <div class="card card m-2 mb-5 my-4 shadow-lg" style="border-radius:14px;">
         <div class="card-body">
           <h1 id="namaCard">Hallo, ${dataUser.name}</h1>
-          <h1 class="gajiProfile">Saldo Rp. ${Intl.NumberFormat('id-ID').format(dataUser.salary - totalExpenses)}</h1>
+          <h1 class="gajiProfile">Saldo kamu, Rp. ${Intl.NumberFormat('id-ID').format(dataUser.salary - totalExpenses)}</h1>
+          <p class="text-white">Tetap berhemat ya!</p>
         </div>
       </div>
        `
