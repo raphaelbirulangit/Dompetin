@@ -1,0 +1,63 @@
+data = {
+    name: 'Deris'
+    salary: 10.000.000
+    categories [
+      {
+        id: 1
+        name: 'Food & Drink'
+        budget: 3.000.000
+      },
+      {
+        id: 2
+        name: 'Shopping'
+        budget: 1.000.000
+      },
+    ]
+    expenses: [
+      {
+        id: 1
+        name: 
+        amount: 20.000
+        categoryId: 1
+        note: 'Makan Siang'
+        createdAt: '17/4/2021'
+      },
+      {
+        id: 2
+        name: 
+        amount: 20.000
+        categoryId: 1
+        note: 'Makan Malam'
+        createdAt: '17/4/2021'
+      }
+    ]
+  }
+
+
+  1. Halaman depan
+  - Isi Nama & Salary
+  - Validasi semua halaman, jika nama & salary undefine, lempar ke halaman Salary
+
+2. Halaman Utama ( profile )
+  -  komposisi vertical 4 rectangle blocks: 
+                    top block
+  - money count
+  -  expense count (beri keterangan)
+  -  income count (beri keterangan)
+                    top mid block
+-  expense money count tracker
+-   income money count tracker 
+ ///               bot mid block
+ -  pie chart money count tracker
+ -  line chart comparison debit credit 
+                    bot block 
+-
+-
+
+3. Halaman List pengeluaran 
+  - list expense per transaksi
+  -  list income per transaksi 
+
+4.  halaman target nabung
+    -  target nabung count
+    - line chart progress nabung
